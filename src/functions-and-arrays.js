@@ -32,7 +32,25 @@ function sumNumbers(arr) {
 }
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(mixedArr) {
+  let sum = 0;
+  for (let i = 0; i < mixedArr.length; i++) {
+    if (typeof mixedArr[i] === 'object' || typeof mixedArr[i] === 'array') {
+      throw "Unsupported data type sir or ma'am";
+    }
+    if (typeof mixedArr[i] === 'string') {
+      mixedArr[i] = mixedArr[i].length;
+    }
+    if (typeof mixedArr[i] === true) {
+      mixedArr[i] = 1;
+    }
+    if (typeof mixedArr[i] === false) {
+      mixedArr[i] = 0;
+    }
+    sum += mixedArr[i];
+  }
+  return sum;
+}
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
@@ -48,7 +66,27 @@ const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smar
 function averageWordLength() {}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(mixedArr) {
+  if (mixedArr.length == 0) {
+    return null;
+  }
+  let sum = 0;
+  let average = 0;
+  for (let i = 0; i < mixedArr.length; i++) {
+    if (typeof mixedArr[i] === 'string') {
+      mixedArr[i] = mixedArr[i].length;
+    }
+    if (typeof mixedArr[i] === true) {
+      mixedArr[i] = 1;
+    }
+    if (typeof mixedArr[i] === false) {
+      mixedArr[i] = 0;
+    }
+    sum += mixedArr[i];
+  }
+  average = sum / mixedArr.length;
+  return Number(average.toFixed(2));
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -65,12 +103,35 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(arr) {
+  //Set Solution
+  //  return [...new Set(arr)]
+
+  //Includes solution
+  // let uniqueWords = []
+  // arr.forEach(function(word){
+  //   if(!uniqueWords.includes(word)){
+  //     uniqueWords.push(word)
+  //   }
+  // })
+  // return uniqueWords
+
+  //.indexOf solution
+  let uniqueArray = [];
+  for (i = 0; i <= arr.length - 1; i++) {
+    if (uniqueArray.indexOf(arr[i]) === -1) {
+      uniqueArray.push(arr[i]);
+    }
+  }
+  return uniqueArray;
+}
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(arr, word) {
+  return arr.includes(word);
+}
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -87,7 +148,15 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(arr, word) {
+  let count = 0;
+  arr.forEach(function (val) {
+    if (val === word) {
+      count++;
+    }
+  });
+  return count;
+}
 
 // Iteration #8: Bonus
 const matrix = [
